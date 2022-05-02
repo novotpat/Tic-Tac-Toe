@@ -31,22 +31,18 @@ grid()
 def game():
     running_game = True
     turn = "X"
-    count = 0
     while running_game:
-        os.system("cls")
         print("=" * 41)
         move = input(f"Player {turn} | Please enter your move number: ")
         print("=" * 41)
         if not move.isnumeric():
             print("Input is not a number....")
-            os.system("cls")
         elif int(move) not in range(1, 10):
             print("The number is not in the range....")
         elif board[move] != "   ":
             print("Entered number is occupied...")
         else:
             board[move] = turn
-            count += 1
             grid()
         # Players switching
         if turn == "X":
@@ -55,7 +51,6 @@ def game():
             turn = "X"
 
     else:
-        os.system("cls")
         running_game = False
 
 game()
