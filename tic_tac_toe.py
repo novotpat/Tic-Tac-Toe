@@ -31,6 +31,7 @@ grid()
 def game():
     running_game = True
     turn = "X"
+    count = 0
     while running_game:
         print("=" * 41)
         move = input(f"Player {turn} | Please enter your move number: ")
@@ -43,13 +44,42 @@ def game():
             print("Entered number is occupied...")
         else:
             board[move] = turn
+            count += 1
             grid()
+        # Evaluation of the game
+        if count >= 5:
+            if board["7"] ==  board["8"] == board["9"] != "   ":  # top row
+                running_game = False
+                print(f"Congratulations, the player {turn} WON! ")
+            elif board["4"] ==  board["5"] == board["6"] != "   ":    # middle row
+                running_game = False
+                print(f"Congratulations, the player {turn} WON! ")
+            elif board["1"] ==  board["2"] == board["3"] != "   ":    # bottom row
+                running_game = False
+                print(f"Congratulations, the player {turn} WON! ")
+            elif board["1"] ==  board["4"] == board["7"] != "   ":    # left column
+                running_game = False
+                print(f"Congratulations, the player {turn} WON! ")
+            elif board["2"] ==  board["5"] == board["8"] != "   ":    # middle column
+                running_game = False
+                print(f"Congratulations, the player {turn} WON! ")
+            elif board["3"] ==  board["6"] == board["9"] != "   ":    # right column
+                running_game = False
+                print(f"Congratulations, the player {turn} WON! ")
+            elif board["1"] ==  board["5"] == board["9"] != "   ":    # first diagonal
+                running_game = False
+                print(f"Congratulations, the player {turn} WON! ")
+            elif board["3"] ==  board["5"] == board["7"] != "   ":    # second diagonal
+                running_game = False
+                print(f"Congratulations, the player {turn} WON! ")
+        if count == 9:
+            running_game = False
+            print("It's a Tie")
         # Players switching
         if turn == "X":
             turn = "O"
         else:
             turn = "X"
-
     else:
         running_game = False
 
