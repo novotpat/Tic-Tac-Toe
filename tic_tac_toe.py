@@ -10,8 +10,11 @@ import os
 from game_rules import Text
 
 # Welcome to player/s, introducing the game rules and show the playground
-print("Welcome to Tic Tac Toe", "=" * 41,"".join(Text), "=" * 41,sep="\n")
-print("Let's start the game", "-" * 41,sep="\n")
+print("Welcome to Tic Tac Toe", "=" * 41, "".join(Text), "=" * 41, sep="\n")
+print("Let's start the game", "-" * 41, sep="\n")
+
+score = [0, 0]
+oddelovac = "+---------------------+"
 
 def game():
 
@@ -31,7 +34,6 @@ def game():
         print("+---" * 3 + "+")
         print(f"|{board ['1']: ^3}|{board ['2']: ^3}|{board ['3']: ^3}|")
         print("+---" * 3 + "+")
-
     grid()
 
     while running_game:
@@ -90,7 +92,23 @@ def game():
         else:
             turn = "X"
 
+    def scoreboard(turn, running_game, score):
+        if running_game == False and turn == "X":
+            score[1] += 1
+        elif count == 9:
+            score = score
+        else:
+            score[0] += 1
+
+        print(f"\n{oddelovac}\n|{'SCORE':^21}|\n{oddelovac}\n{'| Player X | Player O |':^23}")
+        print(f"{oddelovac}\n|{score[0]:^10}:{score[1]:^10}|\n{oddelovac}")
+
+
+    scoreboard(turn, running_game, score)
+
+
 game()
+
 
 # Next game
 while (next_game := input("\nDo you want to play a next game? 'y/n': ")) == "y":
